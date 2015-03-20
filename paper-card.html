@@ -35,7 +35,19 @@
       height: 100%;
       top: 0;
       left :0;
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.1);
+    }
+
+    #shaded > img {
+      display: block;
+      opacity: 0.6;
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 30%;
     }
 
     @-webkit-keyframes addOverlay {
@@ -78,7 +90,9 @@
   <template if="{{enableOverlay}}">
     <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
     on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
-      <div id="shaded"></div>
+      <div id="shaded">
+        <img src="{{overlayImage}}">
+      </div>
       <content></content>
     </paper-shadow>
   </template>
@@ -125,6 +139,15 @@
        * @default false
        */
       enableOverlay: false,
+
+      /**
+       * Path to image to be added to animated overlay on hover
+       *
+       * @attribute overlayImage
+       * @type string
+       * @default ""
+       */
+      overlayImage: "",
 
       /**
        * On-hover function
