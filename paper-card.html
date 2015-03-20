@@ -25,9 +25,18 @@
 
   </style>
 
-  <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}">
-    <content></content>
-  </paper-shadow>
+  <template if="{{enableHover}}">
+    <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
+    on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
+      <content></content>
+    </paper-shadow>
+  </template>
+
+  <template if="{{!enableHover}}">
+    <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}">
+      <content></content>
+    </paper-shadow>
+  </template>
 
 </template>
 <script>
@@ -40,10 +49,38 @@
        * Amount of shadow of the card.
        *
        * @attribute zdepth
-       * @type string
-       * @default '1'
+       * @type int
+       * @default 1
        */
-      zdepth: '1'
+      zdepth: 1,
+
+       /**
+       * Increase shadow by 1 on mouse hover, if possible.
+       *
+       * @attribute enableHover
+       * @type boolean
+       * @default false
+       */
+      enableHover: false,
+
+      /**
+       * Animate the shadow increase/decrease from hovering
+       *
+       * @attribute animated
+       * @type boolean
+       * @default true
+       */
+      animated: true,
+
+      hovered: function() {
+        if( this.zdepth < 5) {
+          this.$.pcard.setZ(this.zdepth + 1);
+        }
+      },
+
+      unHovered: function() {
+        this.$.pcard.setZ(this.zdepth - 1);
+      }
     }
 });
 
