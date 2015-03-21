@@ -38,9 +38,10 @@
       background: rgba(0,0,0,0.1);
     }
 
-    #shaded > img {
+    #image {
+      -webkit-user-select: none;
       display: block;
-      opacity: 0.6;
+      opacity: 0.5;
       position: absolute;
       right: 0;
       left: 0;
@@ -98,9 +99,10 @@
   <template if="{{enableOverlay}}">
     <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
     on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
-      <paper-ripple class="recenteringTouch"></paper-ripple>
       <div id="shaded">
-        <img src="{{overlayImage}}">
+        <img id="image" src="{{overlayImage}}">
+          <paper-ripple class="recenteringTouch"></paper-ripple>
+        </img>
       </div>
       <content></content>
     </paper-shadow>
