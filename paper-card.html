@@ -81,16 +81,9 @@
 
   </style>
 
-  <template if="{{enableHover && !enableOverlay}}">
+  <template if="{{!enableOverlay}}">
     <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
     on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
-      <paper-ripple class="recenteringTouch"></paper-ripple>
-      <content></content>
-    </paper-shadow>
-  </template>
-
-  <template if="{{!enableHover && !enableOverlay}}">
-    <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}">
       <paper-ripple class="recenteringTouch"></paper-ripple>
       <content></content>
     </paper-shadow>
