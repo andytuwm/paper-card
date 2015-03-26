@@ -152,35 +152,33 @@
        * @type string
        * @default ""
        */
-      overlayImage: "",
-
-      /**
-       * On-hover function
-       * @method hovered
-       */
-      hovered: function() {
-        if (this.enableOverlay) {
-          this.$.shaded.className = 'overlay-in';
-        }
-        if( this.enableHover && this.zdepth < 5 ) {
-            this.$.pcard.setZ(this.zdepth + 1);
-        }
-      },
-
-      /**
-       * On-unhover function
-       * @method unHovered
-       */
-      unHovered: function() {
-        if ( this.enableOverlay) {
-          this.$.shaded.className = 'overlay-out';
-        } 
-        if ( this.enableHover && this.zdepth > 0 ) {
-            this.$.pcard.setZ(this.zdepth - 1);
-        }
+      overlayImage: ""
+    },
+    
+     /**
+     * On-hover function
+     * @method hovered
+     */
+    hovered: function() {
+      if (this.enableOverlay) {
+        this.$.shaded.className = 'overlay-in';
       }
+      if( this.enableHover && this.zdepth < 5 ) {
+          this.$.pcard.setZ(this.zdepth + 1);
+      }
+    },
 
-
+    /**
+     * On-unhover function
+     * @method unHovered
+     */
+    unHovered: function() {
+      if ( this.enableOverlay) {
+        this.$.shaded.className = 'overlay-out';
+      } 
+      if ( this.enableHover && this.zdepth > 0 ) {
+        this.$.pcard.setZ(this.zdepth - 1);
+      }
     }
 });
 
