@@ -81,25 +81,26 @@
 
   </style>
 
-  <template if="{{!enableOverlay}}">
-    <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
-    on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
-      <paper-ripple class="recenteringTouch"></paper-ripple>
-      <content></content>
-    </paper-shadow>
-  </template>
 
-  <template if="{{enableOverlay}}">
+  
     <paper-shadow z="{{zdepth}}" id="pcard" animated="{{animated}}"
     on-mouseover="{{hovered}}" on-mouseout="{{unHovered}}">
-      <div id="shaded">
-        <img id="image" src="{{overlayImage}}">
-          <paper-ripple class="recenteringTouch"></paper-ripple>
-        </img>
-      </div>
+      
+      <template if="{{enableOverlay}}">
+        <div id="shaded">
+          <img id="image" src="{{overlayImage}}">
+            <paper-ripple class="recenteringTouch"></paper-ripple>
+          </img>
+        </div>
+      </template>
+      
+      <template if="{{!enableOverlay}}">
+        <paper-ripple class="recenteringTouch"></paper-ripple>
+      </template>
+      
       <content></content>
     </paper-shadow>
-  </template>
+  
 
 </template>
 <script>
@@ -158,15 +159,11 @@
        * @method hovered
        */
       hovered: function() {
-        if ( this.enableOverlay) {
-          if( this.enableHover && this.zdepth < 5) {
-            this.$.pcard.setZ(this.zdepth + 1);
-          }
+        if (this.enableOverlay) {
           this.$.shaded.className = 'overlay-in';
-        } else if( this.enableHover ) {
-          if( this.zdepth < 5) {
+        }
+        if( this.enableHover && this.zdepth < 5 ) {
             this.$.pcard.setZ(this.zdepth + 1);
-          }
         }
       },
 
@@ -176,14 +173,10 @@
        */
       unHovered: function() {
         if ( this.enableOverlay) {
-          if( this.enableHover && this.zdepth > 0) {
-            this.$.pcard.setZ(this.zdepth - 1);
-          }
           this.$.shaded.className = 'overlay-out';
-        } else if( this.enableHover ) {
-          if( this.zdepth > 0) {
+        } 
+        if ( this.enableHover && this.zdepth > 0 ) {
             this.$.pcard.setZ(this.zdepth - 1);
-          }
         }
       }
 
